@@ -1,0 +1,7 @@
+{
+    "require": {
+        "spatie/image": "^3.7",
+        "nesbot/carbon": "^3.8",
+        "gumlet/php-image-resize": "^2.0"
+    }
+}

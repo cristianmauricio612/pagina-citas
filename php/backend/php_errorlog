@@ -1,0 +1,12 @@
+[26-Dec-2024 17:20:30 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/yudercam.sg-host.com/public_html/php/backend../../vendor/autoload.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php on line 2
+[26-Dec-2024 17:23:21 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/yudercam.sg-host.com/public_html/php/backend../../vendor/autoload.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php on line 2
+[26-Dec-2024 17:23:38 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/customer/www/yudercam.sg-host.com/public_html/php/backend../../vendor/autoload.php' (include_path='.:/usr/local/php82/pear') in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/customer/www/yudercam.sg-host.com/public_html/php/backend/create_ad.php on line 2
