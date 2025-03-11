@@ -1,0 +1,91 @@
+.body-mayoria-edad {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(73, 9, 121, 0.9)), 
+                url('/assets/img/fotos/background/login.webp') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    padding: 30px 40px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ad398c, #3f0f1e);
+    border-radius: 15px 15px 0 0;
+}
+
+.form-container h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #ad398c, #992151);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+b{
+    background: linear-gradient(90deg, #ad398c, #992151);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.auth-btn {
+    background: linear-gradient(135deg, #ad398c, #3f0f1e);
+    color: white;
+    border: none;
+    width: 40%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: transform 0.5s ease, background 1.2s ease-in-out;
+}
+.auth-btn:hover {
+    background: linear-gradient(135deg, #992151, #8b00b9);
+    transform: translateY(-2px);
+}
+
+.close-btn {
+    background: linear-gradient(135deg, #3f072e, #23030f);
+    color: white;
+    border: none;
+    width: 40%;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: transform 0.5s ease, background 1.2s ease-in-out;
+}
+.close-btn:hover {
+    background: linear-gradient(135deg, #3f072e, #23030f);
+    transform: translateY(-2px);
+}
