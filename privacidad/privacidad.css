@@ -47,7 +47,8 @@
     font-size: 18px
 }
 
-b{
+a{
+    font-weight: bold;
     background: linear-gradient(90deg, #ad398c, #992151);
     background-clip: text;
     -webkit-background-clip: text;
@@ -55,4 +56,10 @@ b{
 }
 .paragraph{
     font-size: 14px
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        max-width: 400px;
+    }
 }

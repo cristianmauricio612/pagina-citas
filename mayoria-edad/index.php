@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Si el usuario envía el formulario, establecer la cookie y redirigir
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    setcookie('mayoria_edad', 'aceptado', time() + (86400 * 30), "/"); // Cookie válida por 30 días
+    header("Location: /"); // Redirigir al index principal
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,8 +37,10 @@
             <li class="form-label">Permitir el uso de cookies propias y de terceros para tareas de análisis.</li>
         </u>
         <div class="buttons-container">
-            <button class="auth-btn">Aceptar</button>
-            <button class="close-btn">Abandonar el sitio</button>
+            <form method="POST">
+                <button type="submit" class="auth-btn">Aceptar</button>
+            </form>
+            <button class="close-btn" onclick="window.location.href='https://www.google.com.pe/?hl=es'">Abandonar el sitio</button>
         </div>
     </div>
 </body>

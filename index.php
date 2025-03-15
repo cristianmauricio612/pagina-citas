@@ -3,6 +3,12 @@ session_start();
 require 'php/backend/get_credits.php';
 require 'php/backend/config.php';
 
+// Verificar si la cookie "mayoria_edad" está establecida
+if (!isset($_COOKIE['mayoria_edad']) || $_COOKIE['mayoria_edad'] !== 'aceptado') {
+    header("Location: mayoria-edad/");
+    exit();
+}
+
 // Verifica si el usuario está logeado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 $userType = $isLoggedIn ? $_SESSION['user_type'] : null;
@@ -103,6 +109,7 @@ function tiempoTranscurrido($fecha) {
         <link rel="stylesheet" href="/sources/glightbox-3.3.0/css/glightbox.min.css">
         <link rel="stylesheet" href="/sources/choices-11.0.2/choices.min.css">
         <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="stylesheet" href="/assets/css/footer.css">
     </head>
     <body>  
         <!-- Loader -->
@@ -516,8 +523,10 @@ function tiempoTranscurrido($fecha) {
             </div>
         </div>
 
-
-
+        <!-- Footer -->
+        <div id="footer" class="footer">
+            Aqui estara el Footer.
+        </div>
 
         <script src="/sources/jquery-3.7.1/jquery-3.7.1.min.js"></script>
         <script src="/sources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
