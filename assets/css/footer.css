@@ -1,7 +1,61 @@
-.footer{
-    width: 100%;
-    min-height: 30vh;
+footer{
+    margin-left: 250px;
+    margin-top: 10px;
+    background: linear-gradient(105deg, #ad398c, #3f0f1e);
+    color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: left 0.3s ease, width 0.3s ease;
+}
+.box1{
+    width: 70%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 13px;
+    padding: 30px;
+}
+.box2{
+    width: 100%;
+    border-top: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 13px;
+    padding: 30px;
+}
+.box2-up{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.box2-down{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.box2 a{
+    text-decoration: none;
+    color: white;
+}
+.box2 a:hover{
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    footer {
+        margin-left: 0px;
+    }
+    .box1{
+        width: 90%;
+        padding: 20px 0px;
+    }
+    .box2-up{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
 }

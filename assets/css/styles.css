@@ -45,6 +45,8 @@ body {
     display: flex;
     height: 100vh;
     overflow: hidden;
+
+    flex-direction: column;
 }
 
 /* Loader */
