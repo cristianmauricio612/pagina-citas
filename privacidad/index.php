@@ -18,7 +18,7 @@
         </div>
         <div class="my-3">
             <label class="mb-3 paragraph">
-                La titularidad de la página web con dominio www.fantasexanuncios.com es de FantaSexAnuncios SRL, con domicilio social en Avenue de la Chasse 133/135, 1040 Etterbeek, Bruxelles
+                La titularidad de la página web con dominio www.fantasexanuncios.com es de FantaSexAnuncios SRL.
             </label>
             <label class="mb-3 paragraph">
                 Toda persona que acceda a este sitio web asume el papel de usuario, adhiriéndose y aceptando todas las condiciones de uso y nuestra política de privacidad, comprometiéndose a respetar y cumplir estrictamente las disposiciones aquí dispuestas, así como cualquier otra disposición legal que fuera de aplicación. Le recomendamos que lea atentamente.
