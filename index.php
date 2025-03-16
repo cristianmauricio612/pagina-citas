@@ -109,7 +109,6 @@ function tiempoTranscurrido($fecha) {
         <link rel="stylesheet" href="/sources/glightbox-3.3.0/css/glightbox.min.css">
         <link rel="stylesheet" href="/sources/choices-11.0.2/choices.min.css">
         <link rel="stylesheet" href="/assets/css/styles.css">
-        <link rel="stylesheet" href="/assets/css/footer.css">
     </head>
     <body>  
         <!-- Loader -->
@@ -524,26 +523,10 @@ function tiempoTranscurrido($fecha) {
         </div>
 
         <!-- Footer -->
-        <footer id="footer">
-            <div class="box1">
-                En fantasexanuncios.com no se tolerará ningún tipo de conducta que implique, fomente o normalice la violencia sexual hacia otro usuario de la web. A su vez, se almacenarán copias de todos los anuncios para poner a disposición de las autoridades en caso de ser requeridos.
-            </div>
-
-            <div class="box2">
-                <div class="box2-up">
-                    <label>Copyright © 2025</label>
-                    <a href="/"><b>FantaSexAnuncios</b></a>
-                    <label>Todos los derechos reservados</label>
-                </div>
-
-                <div class="box2-down">
-                    <a href="privacidad/">Política de privacidad</a>
-                    <a href="privacidad/">Aviso Legal</a>
-                    <a href="privacidad/">Política de Cookies</a>
-                </div>
-            </div>
-        </footer>
-
+         <div class="include-footer">
+            <?php include 'footer/footer.php'; ?>
+         </div>
+        
         <script src="/sources/jquery-3.7.1/jquery-3.7.1.min.js"></script>
         <script src="/sources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
         <script src="/sources/sweetalert-2/sweetalert2@11.js"></script>

@@ -612,5 +612,7 @@
             Si detectamos fraude en el pago, ya sea en efectivo o con tarjeta de débito o crédito, se le prohibirá el acceso al portal de forma indefinida.
         </label>
     </div>
+    <!-- Footer -->
+    <?php include '../footer/footer.php'; ?>
 </body>
 </html>

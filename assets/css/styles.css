@@ -1229,6 +1229,10 @@ main {
     }
   }
 
+.include-footer{
+    margin-left: 250px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     #sidebar {
@@ -1254,5 +1258,9 @@ main {
 
     .brand-logo img {
         width: 35px;
+    }
+
+    .include-footer{
+        margin-left: 0px;
     }
 }

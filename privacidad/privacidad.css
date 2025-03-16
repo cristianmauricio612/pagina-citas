@@ -6,8 +6,8 @@
     color: white;
     height: 100vh;
     display: flex;
-    align-items: start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-container {
@@ -47,7 +47,7 @@
     font-size: 18px
 }
 
-a{
+.form-container a{
     font-weight: bold;
     background: linear-gradient(90deg, #ad398c, #992151);
     background-clip: text;

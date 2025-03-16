@@ -1,5 +1,5 @@
 footer{
-    margin-left: 250px;
+    width: 100%;
     margin-top: 10px;
     background: linear-gradient(105deg, #ad398c, #3f0f1e);
     color: white;
@@ -45,12 +45,12 @@ footer{
 }
 
 @media (max-width: 768px) {
-    footer {
-        margin-left: 0px;
-    }
     .box1{
         width: 90%;
         padding: 20px 0px;
+    }
+    .box2{
+        font-size: 12px;
     }
     .box2-up{
         display: flex;
