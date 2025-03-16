@@ -211,8 +211,8 @@ function tiempoTranscurrido($fecha) {
                                 <span class="me-1"><?= $userName ?></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="userMenu">
-                                <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
-                                <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
+                                <li><a class="dropdown-item" href="/perfil-advertiser/datos.php">Mi perfil</a></li>
+                                <li><a class="dropdown-item" href="/perfil-user/configuracion.php">Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/php/backend/logout.php">Cerrar sesión</a></li>
                             </ul>
