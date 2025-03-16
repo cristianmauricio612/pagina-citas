@@ -1,13 +1,13 @@
 .body-mayoria-edad {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(73, 9, 121, 0.9)), 
-                url('/assets/img/fotos/background/login.webp') no-repeat center center fixed;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(73, 9, 121, 0.9)) fixed, 
+            url(/assets/img/fotos/background/login.webp) no-repeat center center fixed;
     background-size: cover;
     font-family: 'Poppins', sans-serif;
     color: white;
     height: 100vh;
     display: flex;
-    align-items: start;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .form-container {
@@ -47,7 +47,7 @@
     font-size: 18px
 }
 
-a{
+.form-container a{
     font-weight: bold;
     background: linear-gradient(90deg, #ad398c, #992151);
     background-clip: text;

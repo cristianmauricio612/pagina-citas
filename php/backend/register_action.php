@@ -54,6 +54,24 @@ $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Hashear la contr
 $stmt = $pdo->prepare("INSERT INTO usuarios (email, password, type) VALUES (:email, :password, :type)");
 $stmt->execute(['email' => $email, 'password' => $hashedPassword, 'type' => $type]);
 
+// Obtener el ID del usuario recién insertado
+$user_id = $pdo->lastInsertId();
+
+$nombre = "Nombre";
+$nacimiento = "1900-01-01";
+$sexo = "otro";
+$pais = "Pais";
+$bandera = "PE";
+$indicativo = "+55";
+$telefono = "Telefono";
+$whatsapp = "1";
+
+// Insertar en la tabla 'perfiles' con los mismos datos básicos
+$stmt = $pdo->prepare("INSERT INTO perfiles (usuario_id, nombre, nacimiento, sexo, pais, 
+bandera, categoria, indicativo, telefono, whatsapp) VALUES (:usuario_id, :nombre, :nacimiento, :sexo, :pais, :bandera, :categoria, :indicativo, :telefono, :whatsapp)");
+$stmt->execute(['usuario_id' => $user_id, 'nombre' => $nombre, 'nacimiento' => $nacimiento, 'sexo' => $sexo, 'pais' => $pais, 'bandera' => $bandera, 'categoria' => $type,
+'indicativo' => $indicativo, 'telefono' => $telefono, 'whatsapp' => $whatsapp,]);
+
 // Regenerar ID de sesión para la seguridad
 session_regenerate_id(true);
 

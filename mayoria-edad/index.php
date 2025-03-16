@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <ul class="mb-3" style="font-size: 14px">
             <li class="form-label">Ser <b>mayor de edad</b> según la jurisdicción de tu país.</li>
             <li class="form-label">Permitir el uso de cookies propias y de terceros para tareas de análisis.</li>
-            <li class="form-label">Permitir el uso de cookies propias y de terceros para tareas de análisis.</li>
-            <li class="form-label">Permitir el uso de cookies propias y de terceros para tareas de análisis.</li>
+            <li class="form-label">Nuestros textos de <a href="/privacidad/">avisos legales</a></li>
+            <li class="form-label">Página de anuncios de contactos entre hombres y mujeres donde está <b>estrictamente prohibida</b> la publicidad que utilice estereotipos de género que fomenten o normalicen las violencias sexuales contra las mujeres, niñas, niños y adolescentes.</li>
         </u>
         <div class="buttons-container">
             <form method="POST">

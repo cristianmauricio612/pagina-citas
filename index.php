@@ -109,7 +109,6 @@ function tiempoTranscurrido($fecha) {
         <link rel="stylesheet" href="/sources/glightbox-3.3.0/css/glightbox.min.css">
         <link rel="stylesheet" href="/sources/choices-11.0.2/choices.min.css">
         <link rel="stylesheet" href="/assets/css/styles.css">
-        <link rel="stylesheet" href="/assets/css/footer.css">
     </head>
     <body>  
         <!-- Loader -->
@@ -211,8 +210,8 @@ function tiempoTranscurrido($fecha) {
                                 <span class="me-1"><?= $userName ?></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="userMenu">
-                                <li><a class="dropdown-item" href="/perfil">Mi perfil</a></li>
-                                <li><a class="dropdown-item" href="/configuracion">Configuración</a></li>
+                                <li><a class="dropdown-item" href="/perfil-advertiser/datos.php">Mi perfil</a></li>
+                                <li><a class="dropdown-item" href="/perfil-user/configuracion.php">Configuración</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/php/backend/logout.php">Cerrar sesión</a></li>
                             </ul>
@@ -524,10 +523,10 @@ function tiempoTranscurrido($fecha) {
         </div>
 
         <!-- Footer -->
-        <div id="footer" class="footer">
-            Aqui estara el Footer.
-        </div>
-
+         <div class="include-footer">
+            <?php include 'footer/footer.php'; ?>
+         </div>
+        
         <script src="/sources/jquery-3.7.1/jquery-3.7.1.min.js"></script>
         <script src="/sources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
         <script src="/sources/sweetalert-2/sweetalert2@11.js"></script>
