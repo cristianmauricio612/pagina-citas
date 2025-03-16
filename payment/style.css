@@ -136,3 +136,67 @@ form {
   flex-direction: column;
   align-items: center;
 }
+
+.select {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  Square button
+  Remove style default radio button
+<?php foreach ($prices_packs as $key => $pack) : ?>
+  <label class="radio-button">
+    <input type="radio" name="pack" value="<?= $key ?>" required>
+    <div class="option">
+      <input type="hidden" name="credits" value="<?= $pack['Credits'] ?>">
+      <input type="hidden" name="price" value="<?= $pack['Price'] ?>">
+      <input type="hidden" name="name" value="<?= $pack['Name'] ?>">
+      <div class="dot"></div>
+      <span><?= $pack['Name'] ?></span>
+    </div>
+  </label>
+<?php endforeach; ?>
+*/
+.radio-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.radio-button input[type="radio"] {
+  display: none;
+}
+
+.radio-button .option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ad398c;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.radio-button .option .dot {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #ad398c;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.radio-button input[type="radio"]:checked + .option {
+  background: linear-gradient(135deg, #ad398c, #3f0f1e);
+  border-color: #992151;
+}
+
+.radio-button input[type="radio"]:checked + .option .dot {
+  background: #ad398c;
+}

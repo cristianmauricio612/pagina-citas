@@ -30,6 +30,22 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
     <h2>Comprar Creditos</h2>
     <div class="row">
       <label for="credits" class="form-label">Creditos</label>
+
+      <div class="select">
+
+        <!-- Radio button to select -->
+        <?php foreach ($prices_packs as $key => $pack) : ?>
+          <label class="radio-button">
+            <input type="radio" name="pack" value="<?= $key ?>" required>
+            <div class="option">
+              <div class="dot"></div>
+              <span><?= $pack['Name'] . ' €' . $pack['Price'] / 100 ?></span>
+            </div>
+          </label>
+        <?php endforeach; ?>
+
+      </div>
+      <!--
       <div class="col-xs-3 input-group number-spinner">
         <span class="input-group-btn">
           <button type="button" class="btn btn-outline-danger" data-dir="dwn">
@@ -53,11 +69,12 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
           </button>
         </span>
       </div>
+      -->
     </div>
-    <button view-price class="submit-btn" type="submit">Pay</button>
+    <button view-price class="submit-btn" type="submit">Pagar</button>
   </form>
 
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     $(document).on('click', '.number-spinner button', function() {
       let btn = $(this),
@@ -91,7 +108,7 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
         }).format(value * 0.01 * <?= $stripe_price ?>)
       );
     }
-  </script>
+  </script> -->
 </body>
 
 </html>

@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
   exit();
 }
 
-if (!isset($_POST['credits']) || !is_numeric($_POST['credits'])) {
+if (!isset($_POST['pack'])) {
   http_response_code(303);
   header('Location: /payment');
   exit();
@@ -20,7 +20,15 @@ if (!isset($_POST['credits']) || !is_numeric($_POST['credits'])) {
 $user_id = $_SESSION['user_id'];
 $user_email = $_SESSION['user_email'];
 $user_role = $_SESSION['user_type'];
-$credits = $_POST['credits'];
+
+$pack = $prices_packs[$_POST['pack']] ?? null;
+if (!$pack) {
+  http_response_code(400);
+  echo "BAD REQUEST";
+  exit();
+}
+$credits = $pack['Credits'];
+
 
 \Stripe\Stripe::setApiKey($stripe_secret_key);
 
@@ -46,7 +54,7 @@ $session = \Stripe\Checkout\Session::create([
       'id' => (int)$user_id,
       'email' => $user_email,
       'role' => $user_role,
-      'amount' => (int)$credits
+      'amount' => $credits
     ]
   ]
 ]);
