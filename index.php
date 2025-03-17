@@ -1,13 +1,14 @@
 <?php
 session_start(); 
-require 'php/backend/get_credits.php';
-require 'php/backend/config.php';
 
 // Verificar si la cookie "mayoria_edad" está establecida
 if (!isset($_COOKIE['mayoria_edad']) || $_COOKIE['mayoria_edad'] !== 'aceptado') {
     header("Location: mayoria-edad/");
     exit();
 }
+
+require 'php/backend/get_credits.php';
+require 'php/backend/config.php';
 
 // Verifica si el usuario está logeado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
