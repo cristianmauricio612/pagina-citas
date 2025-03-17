@@ -4,10 +4,11 @@ body {
   background-size: cover;
   font-family: 'Poppins', sans-serif;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 div[input-counter-credits] {
@@ -28,7 +29,7 @@ form {
   background: rgba(0, 0, 0, 0.85);
   border-radius: 15px;
   padding: 30px 40px;
-  margin: 0px 20px;
+  margin: 16px 0px ;
   box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
   max-width: 400px;
   width: 100%;

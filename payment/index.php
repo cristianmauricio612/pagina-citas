@@ -74,6 +74,8 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
     <button view-price class="submit-btn" type="submit">Pagar</button>
   </form>
 
+  <?php include './../footer/footer.php' ?>
+
   <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script>
     $(document).on('click', '.number-spinner button', function() {
