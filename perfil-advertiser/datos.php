@@ -2,10 +2,30 @@
 
 require '../vendor/autoload.php';
 
+session_start();
+require '../php/backend/config.php';
+
+// ID del usuario (esto debe ser dinámico, por ejemplo, desde sesión)
+$usuario_id = $_SESSION['user_id']; // Aquí pon el ID del usuario autenticado
+
+$isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
+
+if (!$isLoggedIn) {
+    header("Location: /");
+    exit();
+}
+if ($isLoggedIn) {
+    include '../php/backend/obtener_perfil.php';
+    if (isset($usuario)) {
+        header("Location: ../perfil-user/perfil.php");
+        exit();
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,17 +60,26 @@ require '../vendor/autoload.php';
             color: white;
             font-family: 'Roboto', sans-serif;
         }
+
         .question-container {
             display: none;
         }
+
         .active {
             display: block;
             animation: fadeIn 0.5s;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         .btn-next {
             background: #ff006e;
             border: none;
@@ -59,9 +88,11 @@ require '../vendor/autoload.php';
             border-radius: 25px;
             color: white;
         }
+
         .btn-next:hover {
             background: #d6005b;
         }
+
         .btn-back {
             background: #ff006e;
             border: none;
@@ -70,17 +101,21 @@ require '../vendor/autoload.php';
             border-radius: 25px;
             color: white;
         }
+
         .btn-back:hover {
             background: #d6005b;
         }
     </style>
 </head>
+
 <body>
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h1 class="text-center mb-4">Completa tu perfil</h1>
                 <form id="interactiveForm">
+                    <!-- MANDAMOS DIRECTAMENTE EL ID DEL USUARIO -->
+                    <input  type="hidden" name="usuario_id" value="<?php echo $usuario_id; ?>">
                     <!-- Preguntas -->
                     <div class="question-container active" data-step="1">
                         <label class="form-label">Nombre de Usuario</label>
@@ -90,7 +125,8 @@ require '../vendor/autoload.php';
 
                     <div class="question-container" data-step="2">
                         <label class="form-label">Sube tu fotografía</label>
-                        <input type="file" class="form-control" name="fotografia" accept="image/*" required>
+                        <input type="file" class="form-control" id="fotoInput" accept="image/*" required>
+                        <input type="hidden" id="fotografia" name="fotografia">
                         <button type="button" class="btn btn-back mt-4">Anterior</button>
                         <button type="button" class="btn btn-next mt-4">Siguiente</button>
                     </div>
@@ -124,6 +160,15 @@ require '../vendor/autoload.php';
                     </div>
 
                     <div class="question-container" data-step="6">
+                        <label class="form-label">Bandera</label>
+                        <select class="form-select" name="bandera" id="bandera" required>
+                            <!-- Más opciones aquí -->
+                        </select>
+                        <button type="button" class="btn btn-back mt-4">Anterior</button>
+                        <button type="button" class="btn btn-next mt-4">Siguiente</button>
+                    </div>
+
+                    <div class="question-container" data-step="7">
                         <label class="form-label">Categoría</label>
                         <select class="form-select" name="categoria" required>
                             <option value="Escort">Escort</option>
@@ -135,7 +180,7 @@ require '../vendor/autoload.php';
                         <button type="button" class="btn btn-next mt-4">Siguiente</button>
                     </div>
 
-                    <div class="question-container" data-step="7">
+                    <div class="question-container" data-step="8">
                         <label class="form-label">Teléfono y Whatsapp</label>
                         <div class="input-group">
                             <select class="form-select" name="indicativo" id="indicativo" required>
@@ -164,7 +209,18 @@ require '../vendor/autoload.php';
     <script src="https://cdn.jsdelivr.net/npm/nouislider/distribute/nouislider.min.js"></script>
 
     <script>
-      $(document).ready(function () {
+        document.getElementById('fotoInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    // Guardar la imagen en base64 en un campo oculto
+                    document.getElementById("fotografia").value = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        $(document).ready(function () {
             let currentStep = 1;
 
             // Cargar países dinámicamente
@@ -173,21 +229,34 @@ require '../vendor/autoload.php';
                 .then(countries => {
                     countries.forEach(country => {
                         $('#countrySelect').append(
-                            `<option value="${country.code}" data-flag="${country.flag}">
+                            `<option value="${country.name}" data-flag="${country.flag}">
                                 <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.name}
                             </option>`
                         );
                     });
                 });
 
-             // Cargar indicativos dinámicamente
-             fetch('../php/backend/datalist/indicativos.json')
+            // Cargar indicativos dinámicamente
+            fetch('../php/backend/datalist/countries.json')
                 .then(response => response.json())
                 .then(countries => {
                     countries.forEach(country => {
                         $('#indicativo').append(
                             `<option value="${country.dial_code}" data-flag="${country.flag}" data-dial="${country.dial_code}">
                                 <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.dial_code} (${country.name})
+                            </option>`
+                        );
+                    });
+                });
+
+            // Cargar banderas dinámicamente
+            fetch('../php/backend/datalist/countries.json')
+                .then(response => response.json())
+                .then(countries => {
+                    countries.forEach(country => {
+                        $('#bandera').append(
+                            `<option value="${country.code}" data-code="${country.code}" data-name="${country.name}">
+                                <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.code.toUpperCase()} (${country.name})
                             </option>`
                         );
                     });
@@ -229,35 +298,23 @@ require '../vendor/autoload.php';
 
                 const formData = new FormData(this);
 
-                // Subir imagen
-                fetch('../php/backend/upload-image.php', {
+                // Guardar perfil
+                fetch('../php/backend/save-profile.php', {
                     method: 'POST',
                     body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        formData.append('fotografia', data.path);
-                        
-                        // Guardar perfil
-                        fetch('../php/backend/save_profile.php', {
-                            method: 'POST',
-                            body: formData
-                        }).then(res => res.json())
-                        .then(result => {
-                            if (result.success) {
-                                Swal.fire('Éxito', 'Perfil completado.', 'success');
-                            } else {
-                                Swal.fire('Error', 'No se pudo guardar el perfil.', 'error');
-                            }
-                        });
-                    } else {
-                        Swal.fire('Error', data.message, 'error');
-                    }
-                });
+                }).then(res => res.json())
+                    .then(result => {
+                        if (result.success) {
+                            Swal.fire('Éxito', 'Perfil completado.', 'success');
+                            window.location.href = "../";
+                        } else {
+                            Swal.fire('Error', 'No se pudo guardar el perfil.', 'error');
+                        }
+                    });
             });
         });
 
     </script>
 </body>
+
 </html>

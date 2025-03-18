@@ -6,6 +6,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 98vh;
 }
 .perfil-container {
@@ -15,6 +16,7 @@ body {
     border: 1px solid #bd5aa08f;
     width: 50%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2%;
 }
 .perfil-container h2 {
     margin-bottom: 15px;
@@ -81,7 +83,83 @@ input {
     background-size: 320%;
     background-position: right center;
 }
+.checkwsp{
+    width: 5%;
+}
+/* Contenedor para la tabla con scroll en pantallas pequeñas */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Mantener el diseño de la tabla */
+.table-dark {
+    background-color: #5a0473 !important;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos del encabezado */
+.table-dark thead {
+    background-color: #4a035f;
+}
+
+.table-dark thead th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #792997;
+    white-space: nowrap; /* Evita que el texto se divida en múltiples líneas */
+}
+
+/* Estilos del cuerpo */
+.table-dark tbody tr {
+    background-color: #792997;
+    transition: all 0.3s ease;
+}
+
+.table-dark tbody tr:nth-child(even) {
+    background-color: #6b0380;
+}
+
+.table-dark tbody tr:hover {
+    background-color: #450350;
+    cursor: pointer;
+}
+
+/* Estilo de las celdas */
+.table-dark td, .table-dark th {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap; /* Evita que el contenido se desborde */
+}
+.btn-view {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+@media (max-width: 1250px) {
+    .perfil-container {
+        width: 80%;
+    }
+}
 @media (max-width: 768px) {
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table-dark {
+        min-width: 600px; /* Evita que la tabla se colapse demasiado */
+    }
+
+    .table-dark th, .table-dark td {
+        padding: 8px;
+    }
     body {
         height: 112vh;
     }

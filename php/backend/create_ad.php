@@ -137,7 +137,7 @@ try {
         $_POST['categoria'],
         $_POST['indicativo'] ?? null,
         $_POST['telefono'] ?? null,
-        $_POST['whatsapp'] ?? null,
+        isset($_POST['whatsapp']) ? 1 : 0,
         $_POST['tarifa'] ?? null,
         $_POST['titulo'],
         $_POST['descripcion'],
