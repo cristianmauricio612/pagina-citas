@@ -245,7 +245,7 @@ function calcularEdad($fechaNacimiento)
 
                                 <!-- Botón de Compartir -->
                                 <div class="d-flex justify-content-between mt-3">
-                                    <button class="btn popup-button" onclick="" style="margin: auto;">
+                                    <button class="btn popup-button" onclick="openShareModal()" style="margin: auto;">
                                         <i class="fa-solid fa-share"></i> Compartir
                                     </button>
                                 </div>
@@ -263,13 +263,13 @@ function calcularEdad($fechaNacimiento)
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <button class="btn btn-outline-primary" onclick="">
+                                            <button class="btn btn-outline-primary" onclick="shareOnWhatsApp()">
                                                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
                                             </button>
-                                            <button class="btn btn-outline-primary" onclick="">
+                                            <button class="btn btn-outline-primary" onclick="shareOnFacebook()">
                                                 <i class="fa-brands fa-facebook"></i> Facebook
                                             </button>
-                                            <button class="btn btn-outline-primary" onclick="">
+                                            <button class="btn btn-outline-primary" onclick="copyLink()">
                                                 <i class="fa-solid fa-link"></i> Copiar Enlace
                                             </button>
                                         </div>
@@ -281,12 +281,13 @@ function calcularEdad($fechaNacimiento)
                         </div>
                     </div>
                 </div>
-
             </div>
+            <button id="return-button" class="cerrarboton" title="Cerrar"><i class="fa-solid fa-left-long"></i> </button>
         </div>
     </div>
 </body>
 <script src="/sources/leaflet-1.9.4/leaflet.js"></script>
+<script src="/sources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // 1️⃣ Obtener los servicios desde PHP
@@ -527,6 +528,34 @@ function calcularEdad($fechaNacimiento)
         }, 300); // Un pequeño retraso para garantizar que el contenedor esté completamente visible
     });  
 </script>
+<script>
+    function openShareModal() {
+        var modal = new bootstrap.Modal(document.getElementById('shareModal'));
+        modal.show();
+    }
 
+    function shareOnWhatsApp() {
+        var url = window.location.href; // Obtén la URL actual
+        window.open('https://wa.me/?text=' + encodeURIComponent(url), '_blank');
+    }
+
+    function shareOnFacebook() {
+        var url = window.location.href; // Obtén la URL actual
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank');
+    }
+
+    function copyLink() {
+        var url = window.location.href; // Obtén la URL actual
+        navigator.clipboard.writeText(url).then(function () {
+            alert("Enlace copiado al portapapeles!");
+        }, function (err) {
+            alert("Error al copiar el enlace.");
+        });
+    }
+
+    document.getElementById('return-button').addEventListener('click', () => {
+        window.location.href = 'perfil.php';
+    });
+</script>
 
 </html>
