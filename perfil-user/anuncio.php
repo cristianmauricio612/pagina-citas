@@ -282,12 +282,14 @@ function calcularEdad($fechaNacimiento)
                     </div>
                 </div>
             </div>
-            <button id="return-button" class="cerrarboton" title="Cerrar"><i class="fa-solid fa-left-long"></i> </button>
+            <button id="return-button" class="cerrarboton" title="Cerrar"><i class="fa-solid fa-left-long"></i>
+            </button>
         </div>
     </div>
 </body>
 <script src="/sources/leaflet-1.9.4/leaflet.js"></script>
 <script src="/sources/bootstrap-5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/sources/glightbox-3.3.0/js/glightbox.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // 1️⃣ Obtener los servicios desde PHP
@@ -461,6 +463,13 @@ function calcularEdad($fechaNacimiento)
             availabilityTimesContainer.appendChild(timeSlotDiv);
         });
 
+        let lightbox = GLightbox({
+            selector: '.glightbox', // Clase que identifica las imágenes
+            touchNavigation: true, // Navegación táctil
+            loop: true,            // Ciclo infinito de imágenes
+            fullscreen: true,      // Botón de pantalla completa
+        });
+
         const articles = Array.from(document.querySelectorAll("article"));
 
         // Convertir `data.pictures` a JSON
@@ -493,6 +502,14 @@ function calcularEdad($fechaNacimiento)
             }
         });
 
+        lightbox.destroy();
+
+        lightbox = GLightbox({
+            selector: '.glightbox', // Clase que identifica las imágenes
+            touchNavigation: true, // Navegación táctil
+            loop: true,            // Ciclo infinito de imágenes
+            fullscreen: true,      // Botón de pantalla completa
+        });
 
         // Actualizar mapa dinámicamente
         const { lat, lng } = data.location;

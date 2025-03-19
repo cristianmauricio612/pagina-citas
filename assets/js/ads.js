@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
                     // Redirigir a "perfil/anuncios?id={id}"
                     setTimeout(() => {
-                        window.location.href = `../perfil-user/anuncio?id=${anuncioId}`;
+                        window.location.href = `../perfil-user/anuncio.php?id=${anuncioId}`;
                     }, 1500); // Pequeño retraso para permitir al usuario ver la alerta de éxito
                 } else {
                     throw new Error("No se recibió el ID del anuncio.");

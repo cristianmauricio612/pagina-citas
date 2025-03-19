@@ -197,23 +197,23 @@ function tiempoTranscurrido($fecha)
 
     <!-- Navbar -->
     <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
+        <div class="container-fluid" style="height:100%">
             <button id="toggleSidebar" class="btn btn-outline-light"><i class="fas fa-bars"></i></button>
             <a class="navbar-brand logo" href="/">
                 <span class="marca"><b>Fanta<span class="redname">SexAnuncios</span></b>.com</span>
                 <span class="brand-logo">
                     <img src="/assets/img/logos/logo.png">
                 </span>
-                <p
-                    style="font-size: 0.8em; text-align: center; margin-top: -18px; font-family: 'Neonderthaw', cursive; margin-left: -60px; text-shadow: 0px 0px 3px black;">
-                    Tus fantasías cerca de ti</p>
+                <p class="frase">
+                    Tus fantasías cerca de ti
+                </p>
             </a>
             <br>
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center botones-nav">
                 <?php if ($isLoggedIn && $userType === 'advertiser'): ?>
                     <!-- Botón Publicar Anuncio para Advertisers -->
                     <a href="/anuncios/crear-anuncio.php" class="btn btn-warning me-2 glowing-button">
-                        <i class="fa-regular fa-circle-plus"></i> Publicar anuncio
+                        <i class="fa-regular fa-circle-plus"></i> <p class="btn-name">Publicar anuncio</p> 
                     </a>
                 <?php endif; ?>
 
@@ -225,10 +225,10 @@ function tiempoTranscurrido($fecha)
                             <span class="conectado">•</span>
                             <img src="/assets/img/fotos/users/advertiser.webp" alt="Foto de perfil"
                                 class="rounded-circle me-2" width="32" height="32">
-                            <span class="me-1"><?= $userName ?></span>
+                            <span class="me-1 btn-name"><?= $userName ?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="userMenu">
-                            <li><a class="dropdown-item" href="/perfil-advertiser/datos.php">Mi perfil</a></li>
+                            <li><a class="dropdown-item" href="/perfil-user/perfil.php">Mi perfil</a></li>
                             <li><a class="dropdown-item" href="/perfil-user/configuracion.php">Configuración</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -238,22 +238,25 @@ function tiempoTranscurrido($fecha)
                     </div>
                     <?php if ($isLoggedIn && $userType === 'advertiser'): ?>
                         <!-- Mostrar créditos -->
-                        <div class="ms-2 d-flex align-items-center creditosinfo">
+                        <div class="ms-2  creditosinfo">
                             <img src="/assets/img/fotos/iconos/credits.png" alt="Créditos" width="23" height="23" class="me-1">
-                            <span>Créditos: <b><?= $userCredits ?></b></span>
+                            <span><p class="btn-name">Créditos:</p><b><?= $userCredits ?></b></span>
                         </div>
                     <?php endif; ?>
                 <?php else: ?>
                     <!-- Botones para usuarios no autenticados -->
                     <!-- Botón Publicar Anuncio para Advertisers -->
                     <a href="/auth/login.php" class="btn btn-warning me-2 glowing-button">
-                        <i class="fa-regular fa-circle-plus"></i> Publicar anuncio
+                        <i class="fa-regular fa-circle-plus"></i>
+                        <p class="btn-name">Publicar anuncio</p>
                     </a>
-                    <a href="/auth/registro.php" class="btn btn-outline-light me-2" style="border-color: #aa3889;">
-                        <i class="fa-solid fa-user-plus"></i> Registrarse
+                    <a href="/auth/registro.php" class="btn btn-outline-light me-2"
+                        style="border-color: #aa3889; display: ruby;">
+                        <i class="fa-solid fa-user-plus"></i>
+                        <p class="btn-name">Registrarse</p>
                     </a>
                     <a href="/auth/login.php" class="btn btn-outline-light loginboton">
-                        Ingresar <i class="fa-solid fa-right-to-bracket"></i>
+                        <p class="btn-name">Ingresar</p> <i class="fa-solid fa-right-to-bracket"></i>
                     </a>
                 <?php endif; ?>
             </div>
@@ -332,7 +335,7 @@ function tiempoTranscurrido($fecha)
     <div id="overlay" class="popup-overlay"></div>
     <div id="popup" class="popup-container">
         <div class="popup-content">
-            <div class="row" style="width: 100%;">
+            <div class="row row-container">
                 <div class="col-8">
                     <main class="gallery">
                         <article>

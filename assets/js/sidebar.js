@@ -21,39 +21,29 @@ $(document).ready(function () {
                 left: '0',
                 width: '100%'
             });
-
-            if (isMobile) {
-                $content.css({
-                    'margin-left': '0',
-                    'position': 'absolute'
-                });
-                $('body').css('overflow', 'auto'); // Habilitar scroll
-            } else {
-                $content.css({
-                    'margin-left': '0',
-                    'position': 'relative'
-                });
-            }
+            $content.css({
+                'margin-left': '0',
+            });
         } else {
             // Expandir sidebar
             $sidebar.css('width', '250px');
-            $footer.css('margin-left', '250px');
-            $navbar.css({
-                left: '250px',
-                width: 'calc(100% - 250px)'
-            });
-
-            if (isMobile) {
-                $content.css({
-                    'margin-left': '250px',
-                    'position': 'absolute'
+            if (!isMobile) {
+                $footer.css('margin-left', '250px');
+                $navbar.css({
+                    left: '250px',
+                    width: 'calc(100% - 250px)'
                 });
-                $('body').css('overflow', 'hidden'); // Bloquear scroll
-                window.scrollTo(0, 0); // Llevar la pantalla al top
-            } else {
                 $content.css({
                     'margin-left': '250px',
-                    'position': 'relative'
+                });
+            } else {
+                $footer.css('margin-left', '0');
+                $navbar.css({
+                    left: '250px',
+                    width: 'calc(100% - 250px)'
+                });
+                $content.css({
+                    'margin-left': '0',
                 });
             }
         }
@@ -61,22 +51,16 @@ $(document).ready(function () {
 
     // Ajustar dinámicamente al redimensionar
     $(window).resize(function () {
-        const isMobile = window.innerWidth <= 768;
-
-        if (isMobile) {
-            $sidebar.css('left', '0');
+        if (window.innerWidth <= 1200) {
+            $sidebar.css('width', '0');
+            $footer.css('margin-left', '0');
+            $navbar.css({
+                left: '0',
+                width: '100%'
+            });
             $content.css({
                 'margin-left': '0',
-                'position': 'absolute'
             });
-            $('body').css('overflow', 'auto'); // Habilitar scroll
-        } else {
-            $sidebar.css('left', '0');
-            $content.css({
-                'margin-left': '250px',
-                'position': 'relative'
-            });
-            $('body').css('overflow', 'auto'); // Scroll habilitado en desktop
-        }
+        } 
     });
 });

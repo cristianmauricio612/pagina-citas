@@ -109,6 +109,7 @@ body{
     align-items: center;
     display: flex;
     transition: transform .3s ease;
+    z-index: 1000;
 }
 
 .cerrarboton:hover {
@@ -882,35 +883,6 @@ article:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    #sidebar {
-        width: 0;
-    }
-
-    #navbar {
-        left: 0;
-        width: 100%;
-    }
-
-    .content {
-        margin-left: 0;
-    }
-
-    .marca {
-        font-size: 1.2em;
-    }
-
-    .logo {
-        margin-left: 3.5rem;
-    }
-
-    .brand-logo img {
-        width: 35px;
-    }
-
-    .include-footer {
-        margin-left: 0px;
-    }
-
     .col-2 {
         width: 60%;
     }
@@ -926,12 +898,12 @@ article:hover {
         margin-left: -0.2rem;
     }
 
-    .col-8 {
-        display: none;
+    .services-grid {
+        display: block;
+        margin: 0px 8px;
     }
 
     .col-2 {
-        margin-top: 0;
         width: 100%;
     }
 }
