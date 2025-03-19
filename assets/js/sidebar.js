@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const $sidebar = $('#sidebar');
+    const $footer = $('#footer-container');
     const $navbar = $('#navbar');
     const $content = $('.content');
 
@@ -15,6 +16,7 @@ $(document).ready(function () {
         if ($sidebar.width() > 0) {
             // Contraer sidebar
             $sidebar.css('width', '0');
+            $footer.css('margin-left', '0');
             $navbar.css({
                 left: '0',
                 width: '100%'
@@ -35,6 +37,7 @@ $(document).ready(function () {
         } else {
             // Expandir sidebar
             $sidebar.css('width', '250px');
+            $footer.css('margin-left', '250px');
             $navbar.css({
                 left: '250px',
                 width: 'calc(100% - 250px)'
@@ -61,7 +64,7 @@ $(document).ready(function () {
         const isMobile = window.innerWidth <= 768;
 
         if (isMobile) {
-            $sidebar.css('left', '-250px');
+            $sidebar.css('left', '0');
             $content.css({
                 'margin-left': '0',
                 'position': 'absolute'

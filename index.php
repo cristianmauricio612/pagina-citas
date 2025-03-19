@@ -554,7 +554,7 @@ function tiempoTranscurrido($fecha)
     </div>
 
     <!-- Footer -->
-    <div class="include-footer">
+    <div class="include-footer" id="footer-container">
         <?php include 'footer/footer.php'; ?>
     </div>
 
