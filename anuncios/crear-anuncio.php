@@ -1,6 +1,7 @@
 <?php
 require '../php/backend/auth.php';
 require '../php/backend/get_credits.php';
+require_once '../php/backend/config.php';
 
 // Verifica si el usuario está logeado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;

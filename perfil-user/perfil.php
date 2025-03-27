@@ -112,8 +112,11 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
                                     <a class='btn-view show-visa' href='anuncio.php?id={$anuncio['anuncio_id']}'>
                                         <i class='fa-solid fa-eye'></i>
                                     </a>
+                                    <a class='btn-view show-visa' href='/payment/anuncios/?id={$anuncio['anuncio_id']}'>
+                                        <i class='fa-solid fa-calendar'></i>
+                                    </a>
                                 </td>
-                              </tr>";
+                            </tr>";
                         }
                     }
                     ?>

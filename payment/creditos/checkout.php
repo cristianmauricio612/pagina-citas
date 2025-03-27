@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../vendor/autoload.php";
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . "/../../vendor/autoload.php";
+require_once __DIR__ . "/../config.php";
 
 session_start();
 
@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset(
 
 if (!isset($_POST['pack'])) {
   http_response_code(303);
-  header('Location: /payment');
+  header('Location: /payment/creditos/');
   exit();
 }
 
@@ -47,10 +47,11 @@ $session = \Stripe\Checkout\Session::create([
       ],
     ]
   ],
-  'success_url' => $stripe_success_url,
-  'cancel_url' => $stripe_cancel_url,
+  'success_url' => $stripe_success_credits_url,
+  'cancel_url' => $stripe_cancel_credits_url,
   'payment_intent_data' => [
     'metadata' => [
+      'type' => 'credits',
       'id' => (int)$user_id,
       'email' => $user_email,
       'role' => $user_role,

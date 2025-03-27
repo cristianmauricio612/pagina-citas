@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 
 function getUserCredits($userId, $pdo) {
     try {

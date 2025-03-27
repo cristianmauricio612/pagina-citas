@@ -1,1 +1,4 @@
 /vendor/
+Dockerfile
+docker-compose.yml
+database.sql

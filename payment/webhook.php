@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../php/backend/config.php";
 require_once __DIR__ . "/config.php";
+require_once __DIR__ . "/handlers.php";
 
 \Stripe\Stripe::setApiKey($stripe_secret_key);
 
@@ -27,27 +28,24 @@ try {
 if ($event->type == 'payment_intent.succeeded') {
   $session = $event->data->object;
 
-  $email = $session->metadata->email;
-  $credits = (int)$session->metadata->amount;
+  $metadata = $session->metadata;
+  $hook_type = $metadata->type;
 
   try {
     // Inicia la transacción
     $pdo->beginTransaction();
 
-    $stmt = $pdo->prepare("SELECT id_user, creditos FROM usuarios WHERE email = :email");
-    $stmt->execute(['email' => $email]);
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$usuario) {
-      throw new Exception("Usuario no encontrado");
+    switch ($hook_type) {
+      case 'credits':
+        handle_credits($pdo, $metadata);
+        break;
+      case 'auto-uploads':
+        handle_autosubidas($pdo, $metadata);
+        break;
+      default:
+        http_response_code(400);
+        exit();
     }
-
-    $nuevos_creditos = $usuario['creditos'] + $credits;
-    $stmt = $pdo->prepare("UPDATE usuarios SET creditos = :creditos, ultima_actualizacion_creditos = NOW() WHERE id_user = :id_user");
-    $stmt->execute(['creditos' => $nuevos_creditos, 'id_user' => $usuario['id_user']]);
-
-    $stmt = $pdo->prepare("INSERT INTO log_creditos (usuario_id, cambio, motivo, fecha) VALUES (:usuario_id, :cambio, :motivo, NOW())");
-    $stmt->execute(['usuario_id' => $usuario['id_user'], 'cambio' => $credits, 'motivo' => 'Compra de créditos']);
 
     // Confirma la transacción
     $pdo->commit();
