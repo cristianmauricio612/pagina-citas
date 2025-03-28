@@ -34,7 +34,7 @@ $credits = $pack['Credits'];
 
 $session = \Stripe\Checkout\Session::create([
   'mode' => 'payment',
-  'payment_method_types' => ['card'],
+  'payment_method_types' => ['card', 'paypal'],
   'line_items' => [
     [
       'quantity' => $credits,

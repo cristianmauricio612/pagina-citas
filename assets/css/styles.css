@@ -1286,6 +1286,11 @@ article:hover {
     transform: scale(1.05);
 }
 
+a {
+    text-decoration: none;
+    color: white;
+}
+
 /* Estilos responsivos */
 @media (min-width: 768px) {
     main {

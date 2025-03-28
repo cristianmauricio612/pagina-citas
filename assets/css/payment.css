@@ -284,12 +284,25 @@ span[container-title] {
 }
 
 div[container] {
-  display: flex;
+  display: grid;
   gap: 8px;
-  flex-wrap: wrap;
+  font-size: x-small;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (width >= 36rem /* 768px */) {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  };
+
+  @media (width >= 48rem /* 768px */) {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+  }
 }
 
 div.chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2px 4px;
   background-color: #3f0f1e;
   border-radius: 4px;

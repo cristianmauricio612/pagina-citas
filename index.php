@@ -239,10 +239,10 @@ function tiempoTranscurrido($fecha)
                     </div>
                     <?php if ($isLoggedIn && $userType === 'advertiser'): ?>
                         <!-- Mostrar créditos -->
-                        <div class="ms-2  creditosinfo">
+                        <a href="/payment/creditos/" class="ms-2 creditosinfo">
                             <img src="/assets/img/fotos/iconos/credits.png" alt="Créditos" width="23" height="23" class="me-1">
-                            <span><p class="btn-name">Créditos:</p><b><?= $userCredits ?></b></span>
-                        </div>
+                            <span><p class="btn-name">Créditos:</p> <b><?= $userCredits ?></b></span>
+                        </a>
                     <?php endif; ?>
                 <?php else: ?>
                     <!-- Botones para usuarios no autenticados -->

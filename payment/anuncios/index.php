@@ -82,7 +82,10 @@ if ($anuncio['au_active'] == 1) {
           </button>
         <?php endforeach; ?>
       </div>
-      <div class="d-flex gap-2">
+    </div>
+    <div class="d-flex flex-column gap-4 p-4 border rounded-3">
+      <span container-title>Horários de subidas automáticas</span>
+      <div class="d-flex gap-2 flex-column flex-md-row">
         <div>
           <label>Hora inicio:</label>
           <input type="time" name="time_start" value="08:00">
@@ -92,10 +95,9 @@ if ($anuncio['au_active'] == 1) {
           <input type="time" name="time_end" value="16:00">
         </div>
       </div>
-    </div>
-    <span container-title>Horários de subidas automáticas</span>
-    <div container>
+      <div container>
 
+      </div>
     </div>
     <button view-price class="submit-btn" type="submit">Pagar</button>
   </form>
