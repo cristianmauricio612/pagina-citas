@@ -1,13 +1,13 @@
 <?php
 
-$stripe_secret_key = "sk_test_51R1bm9RoG8JTU539HOAaz4c31iPEzjKSszp5rAfY1OdX8AdZuPaTr3kUe4z3RK00hNz2UC8s7GqskNy9wZwsUT2H00KCODejQd";
-$stripe_endpoint_secret = 'whsec_c09dd7c65867d60135b1a8ff3f11224b7f7837b022c5a080df5995b9702ff5ef';
+$stripe_secret_key = "sk_test_51Qay7ZFlQMnvGOIQ10SfYaq7InBFKcw46rSHVb9TtW68lbwfRg9XVgAn2IvZiQtCJEJmkHROe7yA9SFWCwndb1qW00Bt4cX6NP";
+$stripe_endpoint_secret = 'whsec_MvjGnuW02WoEpOgv6DSVnO4s9l90SVTa';
 
-$stripe_success_credits_url = 'http://localhost:8080/payment/creditos/success.php?session_id={CHECKOUT_SESSION_ID}';
-$stripe_cancel_credits_url = 'http://localhost:8080/payment/creditos/cancel.html';
+$stripe_success_credits_url = 'https://fantasexanuncios.com/payment/creditos/success.php?session_id={CHECKOUT_SESSION_ID}';
+$stripe_cancel_credits_url = 'https://fantasexanuncios.com/payment/creditos/cancel.html';
 
-$stripe_success_anuncios_url = 'http://localhost:8080/payment/anuncios/success.php?session_id={CHECKOUT_SESSION_ID}';
-$stripe_cancel_anuncios_url = 'http://localhost:8080/payment/anuncios/cancel.html';
+$stripe_success_anuncios_url = 'https://fantasexanuncios.com/payment/anuncios/success.php?session_id={CHECKOUT_SESSION_ID}';
+$stripe_cancel_anuncios_url = 'https://fantasexanuncios.com/payment/anuncios/cancel.html';
 
 $stripe_price = 30;
 $stripe_currency = 'eur';
