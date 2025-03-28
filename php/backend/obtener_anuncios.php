@@ -6,10 +6,7 @@ try {
     $stmt->bindParam(':id', $usuario_id, PDO::PARAM_INT);
     $stmt->execute();
 
-    // Verificar si hay resultados
-    if ($stmt->rowCount() > 0) {
-        $anuncios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } 
+    $anuncios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error al obtener el perfil: " . $e->getMessage();
     exit;

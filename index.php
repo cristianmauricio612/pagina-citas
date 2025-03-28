@@ -7,8 +7,8 @@ if (!isset($_COOKIE['mayoria_edad']) || $_COOKIE['mayoria_edad'] !== 'aceptado')
     exit();
 }
 
-require_once 'php/backend/get_credits.php';
 require_once 'php/backend/config.php';
+require_once 'php/backend/get_credits.php';
 
 // Verifica si el usuario está logeado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
@@ -18,15 +18,14 @@ $userName = isset($_SESSION['user_email']) ? explode('@', $_SESSION['user_email'
 $userId = $isLoggedIn ? $_SESSION['user_id'] : null;
 $userCredits = getUserCredits($userId, $pdo);
 
-/*
 if ($isLoggedIn) {
     require_once 'php/backend/obtener_perfil.php';
     if (!isset($usuario)) {
+        http_response_code(303);
         header("Location: perfil-advertiser/datos.php");
         exit();
     }
 }
-*/
 
 function get_user_location_by_ip()
 {

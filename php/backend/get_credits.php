@@ -1,5 +1,4 @@
 <?php
-require_once 'config.php';
 
 function getUserCredits($userId, $pdo) {
     try {
@@ -16,5 +15,3 @@ function getUserCredits($userId, $pdo) {
         return 0;
     }
 }
-?>
-

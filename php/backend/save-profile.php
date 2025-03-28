@@ -12,15 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $indicativo = $_POST['indicativo'];
     $telefono = $_POST['telefono'];
     $whatsapp = isset($_POST['whatsapp']) ? 1 : 0;
-    // $fotografia = $_POST['fotografia'];
+    $fotografia = $_POST['fotografia'];
 
     $stmt = $pdo->prepare("
         INSERT INTO perfiles (
             usuario_id, nombre, nacimiento, sexo, pais, bandera, categoria,
-            indicativo, telefono, whatsapp, created_at, updated_at
+            indicativo, telefono, whatsapp, fotografia, created_at, updated_at
         ) VALUES (
             :usuario_id, :nombre, :nacimiento, :sexo, :pais, :bandera, :categoria,
-            :indicativo, :telefono, :whatsapp, NOW(), NOW()
+            :indicativo, :telefono, :whatsapp, :fotografia, NOW(), NOW()
         )
     ");
     $stmt->execute([
@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'indicativo' => $indicativo,
         'telefono' => $telefono,
         'whatsapp' => $whatsapp,
+        'fotografia' => $fotografia,
     ]);
 
     echo json_encode(['success' => true]);

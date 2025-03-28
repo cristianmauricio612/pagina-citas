@@ -18,4 +18,3 @@ try {
     echo "Error al obtener el perfil: " . $e->getMessage();
     exit;
 }
-?>
