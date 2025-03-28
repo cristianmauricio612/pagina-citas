@@ -2,7 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../../php/backend/config.php';
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../../config/config.php';
 
 if (!isset($_SESSION['user_email']) || !isset($_SESSION['user_type']) || !isset($_SESSION['user_id'])) {
   http_response_code(303);

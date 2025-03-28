@@ -3,3 +3,5 @@ Dockerfile
 docker-compose.yml
 database.sql
 backup/
+config/config.php
+text.txt

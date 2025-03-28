@@ -1,7 +1,15 @@
 <?php
 
-$stripe_secret_key = "sk_test_51Qay7ZFlQMnvGOIQ10SfYaq7InBFKcw46rSHVb9TtW68lbwfRg9XVgAn2IvZiQtCJEJmkHROe7yA9SFWCwndb1qW00Bt4cX6NP";
-$stripe_endpoint_secret = 'whsec_MvjGnuW02WoEpOgv6DSVnO4s9l90SVTa';
+// Database Configuration
+
+$db_dsn = 'mysql:host=localhost; dbname=db6h0aovgdau0i';
+$db_username = 'ujjvh6bdg2gyn';
+$db_password = '1~l3}1Ke2^d$';
+
+// Payment Configuration
+
+$stripe_secret_key = "sk_...";
+$stripe_endpoint_secret = 'whsec_...';
 
 $stripe_success_credits_url = 'https://fantasexanuncios.com/payment/creditos/success.php?session_id={CHECKOUT_SESSION_ID}';
 $stripe_cancel_credits_url = 'https://fantasexanuncios.com/payment/creditos/cancel.html';
@@ -34,7 +42,6 @@ $prices_packs = [
     "Price" => 6000
   ],
 ];
-
 
 $autosubidas = [
   [

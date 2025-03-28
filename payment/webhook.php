@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../php/backend/config.php";
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . "/../config/config.php";
 require_once __DIR__ . "/handlers.php";
 
 \Stripe\Stripe::setApiKey($stripe_secret_key);

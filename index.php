@@ -51,7 +51,7 @@ function get_user_location_by_ip()
 }
 
 // Consulta para obtener los anuncios en orden descendente de fecha de creación
-$stmt = $pdo->query("SELECT * FROM anuncios ORDER BY created_at DESC");
+$stmt = $pdo->query("SELECT * FROM anuncios ORDER BY activated_at DESC");
 $anuncios = $stmt->fetchAll(PDO::FETCH_ASSOC); // Obtener resultados como un arreglo asociativo
 
 // Obtener ubicación por IP.
