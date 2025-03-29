@@ -5,3 +5,4 @@ database.sql
 backup/
 config/config.php
 text.txt
+test/

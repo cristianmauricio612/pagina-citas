@@ -47,61 +47,73 @@ $autosubidas = [
   [
     'days' => 7,
     'times' => 48,
-    'price' => 25
+    'price' => 25,
+    'credits' => 50,
   ],
   [
     'days' => 7,
     'times' => 36,
-    'price' => 20
+    'price' => 20,
+    'credits' => 50,
   ],
   [
     'days' => 7,
     'times' => 26,
-    'price' => 15
+    'price' => 15,
+    'credits' => 50,
   ],
   [
     'days' => 7,
     'times' => 16,
-    'price' => 10
+    'price' => 10,
+    'credits' => 50,
   ],
   [
     'days' => 7,
     'times' => 10,
-    'price' => 5
+    'price' => 5,
+    'credits' => 50,
   ],
   [
     'days' => 7,
     'times' => 4,
-    'price' => 4
+    'price' => 4,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 48,
-    'price' => 62
+    'price' => 62,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 36,
     'price' => 48,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 26,
     'price' => 36,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 16,
     'price' => 24,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 10,
     'price' => 15,
+    'credits' => 50,
   ],
   [
     'days' => 30,
     'times' => 4,
     'price' => 9,
+    'credits' => 50,
   ]
 ];

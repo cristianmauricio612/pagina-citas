@@ -50,7 +50,7 @@ if ($anuncio['au_active'] == 1) {
 </head>
 
 <body>
-  <form class="form-container gap-2" action="/payment/anuncios/checkout.php" method="post">
+  <form class="form-container gap-2" action="/payment/anuncios/method.php" method="post">
     <h2>Subidas Automáticas</h2>
 
     <div anuncio-card class="mb-3 d-flex gap-2">
@@ -97,6 +97,22 @@ if ($anuncio['au_active'] == 1) {
       </div>
       <div container>
 
+      </div>
+    </div>
+    <div>
+      <!-- Select Payment Method | radio button | credits and payment -->
+      <span container-title>Selecciona un método de pago</span>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="payment_method" id="use_credits" value="credits" checked>
+        <label class="form-check-label" for="use_credits">
+          Usar créditos disponibles
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="payment_method" id="pay_now" value="pay_now">
+        <label class="form-check-label" for="pay_now">
+          Pagar ahora con tarjeta
+        </label>
       </div>
     </div>
     <button view-price class="submit-btn" type="submit">Pagar</button>

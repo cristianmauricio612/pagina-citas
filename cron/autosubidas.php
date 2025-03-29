@@ -1,9 +1,9 @@
 <?php
 
-if (php_sapi_name() != 'cli') {
-  header('HTTP/1.0 404 Not Found', true, 404);
-  exit();
-}
+// if (php_sapi_name() != 'cli') {
+//   header('HTTP/1.0 404 Not Found', true, 404);
+//   exit();
+// }
 
 require_once __DIR__ . '/../php/backend/config.php';
 
@@ -26,21 +26,16 @@ $sql = "SELECT
 $stmt = $pdo->query($sql);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// content type json
+header('Content-Type: application/json');
+echo json_encode($results);
+
 try {
   $pdo->beginTransaction();
 
   foreach ($results as $result) {
     $anuncio_date_activation = new DateTime($result['active_date']);
     $current_date = new DateTime();
-
-    print_r([
-      'anuncio_id' => $result['anuncio_id'],
-      'anuncio_date_activation' => $anuncio_date_activation,
-      'current_date' => $current_date,
-      'current' => $result['au_current'],
-    ]);
-
-    echo '<br>';
 
     if ($result['au_current'] + 1 >= $result['au_total']) {
       $sql = "UPDATE anuncios SET

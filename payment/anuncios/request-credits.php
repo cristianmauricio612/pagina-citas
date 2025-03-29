@@ -1,30 +1,39 @@
 <?php
 
-require_once __DIR__ . "/../config/config.php";
+session_start();
 
-function handle_autosubidas($pdo, $metadata)
-{
-  // Get global $autosubidas
-  global $autosubidas;
+require_once __DIR__  . "/../../php/backend/config.php";
+require_once __DIR__  . "/_parse.php";
 
-  /** {
-    "type": "auto-uploads",
-    "anuncio_id": "f0bd332b",
-    "autosubidas_id": "0",
-    "id": "6",
-    "role": "advertiser",
-    "email": "admin@gmail.com",
-    "interval": "24.468085106383",
-    "time_start": "9:0",
-    "time_end": "14:50"
+try {
+  $pdo->beginTransaction();
+
+  $sql = "SELECT * FROM usuarios WHERE id_user = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute(['id' => $_SESSION['user_id']]);
+  $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$usuario) {
+    throw new Exception("Usuario no encontrado");
   }
-   */
 
-  $anuncio_id = $metadata->anuncio_id;
-  $autosubidas_id = $metadata->autosubidas_id;
-  $time_start = $metadata->time_start;
-  $time_end = $metadata->time_end;
-  $interval = $metadata->interval;
+  if ($usuario['creditos'] < $autosubida['credits']) {
+    throw new Exception("No tienes suficientes créditos");
+  }
+
+  $sql = "UPDATE usuarios SET creditos = creditos - :creditos WHERE id_user = :id";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([
+    'creditos' => $autosubida['credits'],
+    'id' => $_SESSION['user_id']
+  ]);
+
+  $anuncio_id = $_POST['anuncio_id'];
+  $autosubidas_id = $_POST['autosubidas_id'];
+  $time_start = $_POST['time_start'];
+  $time_end = $_POST['time_end'];
+  // timezone_offset
+  $timezone_offset = $_POST['timezone_offset'];
 
   list($hour, $minutes) = explode(':', $time_start);
 
@@ -81,30 +90,16 @@ function handle_autosubidas($pdo, $metadata)
     'times' => $autosubida['times'],
     'interval' => $interval,
     'total' => $autosubida['times'] * $autosubida['days'],
-    'start_hour' => $time_start,
-    'end_hour' => $time_end,
+    'start_hour' => $start_hora . ':' . $start_minuto,
+    'end_hour' => $end_hora . ':' . $end_minuto,
     'anuncio_id' => $anuncio_id
   ]);
-}
 
-function handle_credits($pdo, $metadata)
-{
-  $email = $metadata->email;
-  $credits = (int)$metadata->amount;
-
-  $stmt = $pdo->prepare("SELECT id_user, creditos FROM usuarios WHERE email = :email");
-  $stmt->execute(['email' => $email]);
-  $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-  if (!$usuario) {
-    throw new Exception("Usuario no encontrado");
-  }
-
-  $nuevos_creditos = $usuario['creditos'] + $credits;
-  $stmt = $pdo->prepare("UPDATE usuarios SET creditos = :creditos, ultima_actualizacion_creditos = NOW() WHERE id_user = :id_user");
-  $stmt->execute(['creditos' => $nuevos_creditos, 'id_user' => $usuario['id_user']]);
-
-  $stmt = $pdo->prepare("INSERT INTO log_creditos (usuario_id, cambio, motivo, fecha) VALUES (:usuario_id, :cambio, :motivo, NOW())");
-  $stmt->execute(['usuario_id' => $usuario['id_user'], 'cambio' => $credits, 'motivo' => 'Compra de créditos']);
+  $pdo->commit();
+  header("Location: /payment/anuncios/result.html?error_message=" . urlencode("Compra completa"), true, 303);
+  exit;
+} catch (Exception $e) {
+  $pdo->rollBack();
+  header("Location: /payment/anuncios/result.html?error_message=" . urlencode($e->getMessage()), true, 303);
+  exit;
 }
