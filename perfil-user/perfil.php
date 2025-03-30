@@ -126,7 +126,7 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
                             <div info>
                             <?php if (!$isExpired) : ?>
                                 <span class='ad-active'>Activo</span>
-                                <span>Se Desactivará en <?= $daysUntilExpiration; ?></span>
+                                <span>Se Desactivará en <?= $daysUntilExpiration; ?> días</span>
                             <?php else: ?>
                                 <span class='ad-inactive'>Inactivo</span>
                                 <span>Se eliminará en <?= $daysUntilElimination; ?> días</span>
