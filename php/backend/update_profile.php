@@ -23,6 +23,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'fotografia' => $_POST['fotografia']
     ];
 
+    // Validar edad mínima de 18 años
+    $fechaNacimiento = new DateTime($nuevos_datos['nacimiento']);
+    $hoy = new DateTime();
+    $edad = $hoy->diff($fechaNacimiento)->y; // Calcula la diferencia en años
+
+    if ($edad < 18) {
+        echo json_encode(['success' => false, 'message' => 'Debes ser mayor de edad.']);
+        exit; // Terminar ejecución para no seguir con la inserción
+    }
+
     // Construir la consulta dinámicamente solo con los campos que han cambiado
     $campos_a_actualizar = [];
     $valores = ['usuario_id' => $usuario_id];
