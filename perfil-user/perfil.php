@@ -90,62 +90,90 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
                 <thead>
                     <tr>
                         <th>Foto</th>
-                        <th>Nombre</th>
-                        <th>Categoria</th>
-                        <th>Telefono</th>
-                        <th>Titulo</th>
+                        <th>Información</th>
+                        <th>Activación</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ($isAdvertiser) {
-                        include '../php/backend/obtener_anuncios.php';
-                        foreach ($anuncios as $anuncio) {
-                            echo "<tr>
-                                <td>
-                                    <img src='{$anuncio['picture_profile']}' class='foto-anuncio' alt='Foto de anuncio'>
-                                </td>
-                                <td>{$anuncio['nombre']}</td>
-                                <td>{$anuncio['categoria']}</td>
-                                <td>{$anuncio['telefono']}</td>
-                                <td>{$anuncio['titulo']}</td>
-                                <td>
-                                    <div class='acciones'/>
-                                    <a class='btn-view show-visa' href='anuncio.php?id={$anuncio['anuncio_id']}'>
-                                        <i class='fa-solid fa-external-link'></i>
-                                        Ver
-                                    </a>
-                                    <a class='btn-view show-visa' href='/payment/anuncios/?id={$anuncio['anuncio_id']}'>
-                                        <i class='fa-solid fa-calendar'></i>
-                                        Autosubidas
-                                    </a>
-                                    <a class='btn-view show-visa' href='/anuncios/visibilidad.php/?id={$anuncio['anuncio_id']}'>
-                                        <i class='fa-solid fa-eye'></i>
-                                        Visibilidad
-                                    </a>
-                                    </div>
-                                </td>
-                            </tr>";
-                        }
-                    }
-                    ?>
+                    <?php if ($isAdvertiser) : ?>
+                    <?php include '../php/backend/obtener_anuncios.php'; ?>
+                    <?php foreach ($anuncios as $anuncio) : ?>
+                        <tr>
+                        <td>
+                            <img src='<?= $anuncio['picture_profile']; ?>' class='foto-anuncio <?= $anuncio['hidden'] == 1 ? 'foto-hidden' : '' ?>' alt='Foto de anuncio'>
+                        </td>
+                        <td>
+                            <div info>
+                                <span title><?= $anuncio['titulo']; ?></span>
+                                <span category><?= $anuncio['categoria']; ?></span>
+                                <span number><?= $anuncio['indicativo'] . ' ' . $anuncio['telefono']; ?></span>
+                            </div>
+                        </td>
+                        <td>
+                            <?php
+                            // Activate if now if less than $anuncio['expires_at']
+                            $now = new DateTime();
+                            $expiresAt = new DateTime($anuncio['expires_at']);
+                            $isExpired = $now > $expiresAt;
+                            // "au_active","au_start_day","au_end_day","au_days","au_times","au_interval","au_total","au_current","au_start_hour","au_end_hour","activated_at","expires_at"
+                            // dias hasta expires_at + 20 days
+                            $nowPlus20Days = (clone $expiresAt)->add(new DateInterval('P20D'));
+                            $daysUntilElimination = $now->diff($nowPlus20Days)->days;
+                            $daysUntilExpiration = $now->diff((clone $expiresAt)->add(new DateInterval('P1D')))->days;
+                            ?>
+
+                            <div info>
+                            <?php if (!$isExpired) : ?>
+                                <span class='ad-active'>Activo</span>
+                                <span>Se Desactivará en <?= $daysUntilExpiration; ?></span>
+                            <?php else: ?>
+                                <span class='ad-inactive'>Inactivo</span>
+                                <span>Se eliminará en <?= $daysUntilElimination; ?> días</span>
+                            <?php endif; ?>
+                            <!-- $anuncio['au_active'] -->
+                            <?php if ($anuncio['au_active']) : ?>
+                                <span class='ad-active'>Subidas Automaticas</span>
+                            <?php endif; ?>
+                            </div>
+                        </td>
+                        <td>
+                            <div class='acciones'/>
+                            <a class='btn-view show-visa' href='anuncio.php?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-external-link'></i>
+                                Ver
+                            </a>
+                            <a class='btn-view show-visa' href='/anuncios/visibilidad.php/?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-eye'></i>
+                                Visibilidad (<?= $anuncio['hidden'] == 1 ? 'Oculto' : 'Visible'; ?>)
+                            </a>
+                            <a aria-disabled="<?= $anuncio['au_active'] ? 'true' : 'false' ?>" class='btn-view show-visa' href='/payment/anuncios/?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-clock'></i>
+                                Subidas Automáticas
+                            </a>
+                            <a class='btn-view show-visa' href='/anuncios/subida-manual.php/?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-wrench'></i>
+                                Subida Manual
+                            </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
-</body>
-<script>
-    let isAdvertiser1 = <?php echo $isAdvertiser ? 'true' : 'false'; ?>;
-
-    if (isAdvertiser1) {
-        let anunciosContainer = document.getElementById('anuncios-container');
-        if (anunciosContainer) {
-            anunciosContainer.style.display = 'block';
+    <script>
+        let isAdvertiser1 = <?= $isAdvertiser ? 'true' : 'false'; ?>;
+    
+        if (isAdvertiser1) {
+            let anunciosContainer = document.getElementById('anuncios-container');
+            if (anunciosContainer) {
+                anunciosContainer.style.display = 'block';
+            }
+            document.body.style.height = '1%';
         }
-        document.body.style.height = '1%';
-    }
-</script>
-
-
+    </script>
+</body>
 </html>

@@ -1,3 +1,8 @@
+*, *::before, *::after {
+    text-decoration: none;
+    list-style: none;
+}
+
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(73, 9, 121, 0.9)), 
@@ -27,7 +32,6 @@ body {
     height: 200px;
     border: 3px solid #ddd;
     object-fit: cover;
-    cursor: pointer;
 }
 .foto-section {
     text-align: center;
@@ -126,11 +130,6 @@ input {
     background-color: #6b0380;
 }
 
-.table-dark tbody tr:hover {
-    background-color: #450350;
-    cursor: pointer;
-}
-
 /* Estilo de las celdas */
 .table-dark td, .table-dark th {
     padding: 10px;
@@ -180,7 +179,6 @@ input {
 
 .acciones {
     display: flex;
-    align-items: start;
     flex-direction: column;
     gap: 10px;
 }
@@ -189,6 +187,69 @@ input {
     padding: 8px;
     display: inline-flex;
     gap: 8px;
+    font-size:0.9em;
+    background-color: #af1770;
+    border-radius: 4px;
+    border: 1px solid #671138;
+    box-shadow: 0px 0px 5px#2f2f2f60;
+    transition: all 0.3s ease;
+}
+
+.acciones > a[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: saturate(0.5);
+    opacity: 0.5;
+}
+
+.acciones > a:hover {
+    color: #f0f0f0;
+    filter: saturate(1.2);
+    scale: 1.05;
+}
+
+td div[info] {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    align-items: start;
+
+    & [title] {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #f09090;
+        max-width: 10ch;
+        text-wrap: wrap;
+    }
+    & [category] {
+        font-size: 12px;
+        color: #f0f0f0;
+    }
+    & [number] {
+        font-size: 12px;
+        color: #f0f0f0;
+    }
+}
+
+span.ad-active {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #671138;
+    background-color: #67113850;
+    font-weight: bold;
+    color: #f0f0f0;
+
+}
+
+span.ad-inactive {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #671138;
+    background-color: #67113850;
+    font-weight: bold;
+    color: #f0f0f0;
 }
 
 td > img {
@@ -197,9 +258,12 @@ td > img {
     height: 120px;
     object-fit: cover;
     object-position: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid white;
+    box-shadow: 2px 2px 5px #202020a0;
 }
 
-.acciones > a:hover {
-    color: #f0f0f0;
-    background-color: #4a035f;
+td > img.foto-hidden {
+    filter: saturate(0.25);
 }

@@ -7,7 +7,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  text-decoration: none;
   list-style: none;
 }
 
@@ -31,7 +30,7 @@ form {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 16px;
 }
 
 div[h-divisor] {
@@ -62,7 +61,7 @@ div[anuncio] {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px;
   align-items: start;
 
   & h1 {
@@ -114,7 +113,7 @@ span[testing] {
   display: inline-block;
 }
 
-span[error] {
+[error] {
   color: #ff0000;
   font-size: 0.7rem;
   font-weight: 600;
@@ -123,4 +122,26 @@ span[error] {
   max-width: 500px;
   text-wrap: break-word;
   display: inline-block;
+}
+
+button:disabled {
+  pointer-events: none;
+  filter: saturate(0.0);
+  opacity: 0.5;
+}
+
+a[aria-hidden] {
+  display: none;
+}
+
+a[success] {
+  color: white;
+  padding: 8px;
+  font-weight: 600;
+  text-align: center;
+  /* leading */
+  max-width: 500px;
+  text-wrap: break-word;
+  background-color: #292;
+  border-radius: 4px;
 }

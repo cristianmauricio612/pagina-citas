@@ -24,6 +24,16 @@ if ($_SESSION['user_id'] != $anuncio['usuario_id']) {
   exit();
 }
 
+$sql = "SELECT * FROM usuarios WHERE id_user = :id_usuario";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':id_usuario', $anuncio['usuario_id'], PDO::PARAM_INT);
+$stmt->execute();
+$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$usuario) {
+  header("Location: /perfil-user/perfil.php");
+  exit();
+}
+
 // [ "anuncio_id", "visitas", "id_profile", "usuario_id", "nombre", "nacimiento", "sexo", "pais", "bandera", "categoria", "indicativo", "telefono", "whatsapp", "principal_picture", "picture_profile", "pictures", "tarifa", "titulo", "descripcion", "idiomas", "disponibilidad", "horarios", "servicios", "ciudad", "provincia", "latitude", "longitude", "locationtip", "au_active", "au_start_day", "au_end_day", "au_days", "au_times", "au_interval", "au_total", "au_current", "au_start_hour", "au_end_hour", "activated_at", "expires_at", "created_at", "updated_at", "metodo", "indice", "hidden" ] 
 ?>
 
@@ -34,13 +44,13 @@ if ($_SESSION['user_id'] != $anuncio['usuario_id']) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/assets/css/visibilidad.css">
-  <title>Visibilidad</title>
+  <title>Subida Manual</title>
 </head>
 
 <body>
   <form action="/anuncios/_visibilidad.php">
     <div anuncio>
-      <h1 header>Cambiar Visibilidad</h1>
+      <h1 header>Subida Manual</h1>
 
       <!-- Back to view anuncio -->
       <a href="perfil-user/perfil.php" class="back">
@@ -61,8 +71,20 @@ if ($_SESSION['user_id'] != $anuncio['usuario_id']) {
     <input type="hidden" name="id" value="<?= htmlspecialchars($_GET['id']); ?>">
     <input type="hidden" name="hidden" value="<?= $anuncio['hidden']; ?>">
 
-    <button type="submit">
-      <?= ($anuncio['hidden'] == 1) ? 'Mostrar' : 'Ocultar' ?>
+    <?php if ($usuario['creditos'] < 10) : ?>
+      <div error>
+        <span>Necesitas almenos <?= 10 ?> créditos para activar la visibilidad.</span>
+      </div>
+      <span>Tienes <?= $usuario['creditos'] ?> créditos </span>
+      <a href="/payment/creditos"> Obtener más créditos </a>
+    <?php endif; ?>
+
+    <a aria-hidden success href="/perfil-user/perfil.php">
+      Verificar en el perfil
+    </a>
+
+    <button <?= $usuario['creditos'] < 10 ? 'disabled' : ''; ?> type="submit">
+      <?= 'Subir por 10 creditos' ?>
     </button>
     <span error></span>
   </form>
@@ -76,7 +98,6 @@ if ($_SESSION['user_id'] != $anuncio['usuario_id']) {
 
         const form = $(this).closest("form");
         const id = form.find("input[name=\"id\"]").val();
-        const hidden = form.find("input[name=\"hidden\"]").val();
 
         button.text("Cargando...");
         button.prop("disabled", true);
@@ -84,14 +105,14 @@ if ($_SESSION['user_id'] != $anuncio['usuario_id']) {
         $("span[error]").css("display", "none");
 
         $.ajax({
-          url: "/anuncios/_visibilidad.php",
+          url: "/anuncios/_subida-manual.php",
           type: "POST",
           data: {
             id: id,
-            hidden: hidden
           },
           success: function(response) {
-            button.text(response.hidden == 1 ? "Mostrar" : "Ocultar");
+            button.hide();
+            $('[aria-hidden]').attr('aria-hidden', null);
           },
           error: function(xhr, status, error) {
             button.text("Reintentar");
