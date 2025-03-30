@@ -1417,7 +1417,7 @@ a {
     }    
 
     .botones-nav{
-        padding-top: 63px;
+        padding-top: 70px;
     }   
 
     .popup-perfil {
@@ -1432,5 +1432,9 @@ a {
 
     .col-2 {
         width: 100%;
+    }
+
+    .glowing-button, .loginboton {
+        padding: 5px 8px;
     }
 }

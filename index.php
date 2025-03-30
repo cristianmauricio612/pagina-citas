@@ -252,7 +252,7 @@ function tiempoTranscurrido($fecha)
                         <p class="btn-name">Publicar anuncio</p>
                     </a>
                     <a href="/auth/registro.php" class="btn btn-outline-light me-2"
-                        style="border-color: #aa3889; display: ruby;">
+                        style="border-color: #aa3889; display: ruby; padding: 5px 8px;">
                         <i class="fa-solid fa-user-plus"></i>
                         <p class="btn-name">Registrarse</p>
                     </a>
