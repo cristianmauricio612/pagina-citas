@@ -2,6 +2,7 @@
 
 session_start();
 
+require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../php/backend/config.php';
 
 if (!isset($_POST['id'])) {
@@ -54,7 +55,7 @@ if (!$usuario) {
   exit();
 }
 
-if ($usuario['creditos'] < 10) {
+if ($usuario['creditos'] < $precio_de_subida) {
   http_response_code(403);
   header('Content-Type: application/json');
   echo json_encode(array(
@@ -76,7 +77,7 @@ try {
   $stmt->execute(['anuncio_id' => $_POST['id']]);
 
   $sql = "UPDATE usuarios SET
-    creditos = creditos - 10
+    creditos = creditos - $precio_de_subida
     WHERE id_user = :id_usuario";
   $stmt = $pdo->prepare($sql);
   $stmt->execute(['id_usuario' => $anuncio['usuario_id']]);
@@ -85,13 +86,18 @@ try {
 } catch (Exception $e) {
   echo $e->getMessage();
   $pdo->rollBack();
+  http_response_code(500);
+  header('Content-Type: application/json');
+  echo json_encode(array(
+    'status' => 'error',
+    'message' => 'Invalid request method'
+  ));
+  exit();
 }
-
-
 
 http_response_code(200);
 header('Content-Type: application/json');
 echo json_encode(array(
-  'status' => 'error',
-  'message' => 'Invalid request method'
+  'status' => 'success',
+  'message' => 'Anuncio activated successfully'
 ));

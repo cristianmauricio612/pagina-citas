@@ -2,6 +2,7 @@
 
 session_start();
 
+require_once __DIR__ . "/../config/config.php";
 require_once __DIR__ . "/../php/backend/config.php";
 
 if (!isset($_GET['id'])) {
@@ -71,9 +72,9 @@ if (!$usuario) {
     <input type="hidden" name="id" value="<?= htmlspecialchars($_GET['id']); ?>">
     <input type="hidden" name="hidden" value="<?= $anuncio['hidden']; ?>">
 
-    <?php if ($usuario['creditos'] < 10) : ?>
+    <?php if ($usuario['creditos'] < $precio_de_subida) : ?>
       <div error>
-        <span>Necesitas almenos <?= 10 ?> créditos para activar la visibilidad.</span>
+        <span>Necesitas almenos <?= $precio_de_subida ?> créditos para activar la visibilidad.</span>
       </div>
       <span>Tienes <?= $usuario['creditos'] ?> créditos </span>
       <a href="/payment/creditos"> Obtener más créditos </a>
@@ -83,8 +84,8 @@ if (!$usuario) {
       Verificar en el perfil
     </a>
 
-    <button <?= $usuario['creditos'] < 10 ? 'disabled' : ''; ?> type="submit">
-      <?= 'Subir por 10 creditos' ?>
+    <button <?= $usuario['creditos'] < $precio_de_subida ? 'disabled' : ''; ?> type="submit">
+      <?= "Subir por $precio_de_subida creditos"; ?>
     </button>
     <span error></span>
   </form>
