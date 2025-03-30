@@ -80,7 +80,7 @@ if ($isLoggedIn) {
             }
         }
 
-        .btn-next {
+        .btn-next, .btn-send {
             background: #ff006e;
             border: none;
             padding: 10px 20px;
@@ -89,7 +89,7 @@ if ($isLoggedIn) {
             color: white;
         }
 
-        .btn-next:hover {
+        .btn-next:hover, .btn-send:hover {
             background: #d6005b;
         }
 
@@ -115,7 +115,7 @@ if ($isLoggedIn) {
                 <h1 class="text-center mb-4">Completa tu perfil</h1>
                 <form id="interactiveForm">
                     <!-- MANDAMOS DIRECTAMENTE EL ID DEL USUARIO -->
-                    <input  type="hidden" name="usuario_id" value="<?php echo $usuario_id; ?>">
+                    <input type="hidden" name="usuario_id" value="<?php echo $usuario_id; ?>">
                     <!-- Preguntas -->
                     <div class="question-container active" data-step="1">
                         <label class="form-label">Nombre de Usuario</label>
@@ -191,7 +191,8 @@ if ($isLoggedIn) {
                             <input type="checkbox" class="form-check-input" name="whatsapp" id="whatsapp">
                             <label class="form-check-label" for="whatsapp">Usa este número para Whatsapp</label>
                         </div>
-                        <button type="submit" class="btn btn-next mt-4">Enviar</button>
+                        <button type="button" class="btn btn-back mt-4">Anterior</button>
+                        <button type="submit" class="btn btn-send mt-4">Enviar</button>
                     </div>
                 </form>
             </div>
@@ -228,7 +229,7 @@ if ($isLoggedIn) {
                 .then(response => response.json())
                 .then(countries => {
                     countries.forEach(country => {
-                        if(country.name === "España") {
+                        if (country.name === "España") {
                             $('#countrySelect').append(
                                 `<option value="${country.name}" data-flag="${country.flag}" selected>
                                     <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.name}
@@ -263,7 +264,7 @@ if ($isLoggedIn) {
                 .then(countries => {
                     countries.forEach(country => {
                         $('#bandera').append(
-                            `<option ${country.code.toUpperCase() === 'ES' ? 'selected' : '' } value="${country.code}" data-code="${country.code}" data-name="${country.name}">
+                            `<option ${country.code.toUpperCase() === 'ES' ? 'selected' : ''} value="${country.code}" data-code="${country.code}" data-name="${country.name}">
                                 <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.code.toUpperCase()} (${country.name})
                             </option>`
                         );
@@ -271,10 +272,29 @@ if ($isLoggedIn) {
                 });
 
             // Botón siguiente
-            $(".btn-next").on("click", function () {
+            $(".btn-next").click(function (event) {
                 const currentContainer = $(`.question-container[data-step="${currentStep}"]`);
                 const nextContainer = $(`.question-container[data-step="${currentStep + 1}"]`);
 
+                // Obtener los inputs solo del paso actual
+                const inputs = currentContainer.find(":input");
+
+                // Validar solo los campos del paso actual
+                let isValid = true;
+                inputs.each(function () {
+                    if (!this.checkValidity()) {
+                        isValid = false;
+                        return false; // Rompe el bucle si encuentra un campo inválido
+                    }
+                });
+
+                if (!isValid) {
+                    event.preventDefault();
+                    currentContainer.addClass("was-validated"); // Resalta errores en el paso actual
+                    return;
+                }
+
+                // Si la validación es correcta, avanzar al siguiente paso
                 currentContainer.removeClass("active");
                 nextContainer.addClass("active");
                 currentStep++;
@@ -284,6 +304,7 @@ if ($isLoggedIn) {
                     $(".btn-back").removeClass("d-none");
                 }
             });
+
 
             // Botón atrás
             $(".btn-back").on("click", function () {
@@ -310,16 +331,22 @@ if ($isLoggedIn) {
                 fetch('../php/backend/save-profile.php', {
                     method: 'POST',
                     body: formData
-                }).then(res => res.json())
+                })
+                    .then(res => res.json())
                     .then(result => {
                         if (result.success) {
-                            Swal.fire('Éxito', 'Perfil completado.', 'success');
-                            window.location.href = "../";
+                            Swal.fire('Éxito', 'Perfil completado.', 'success').then(() => {
+                                window.location.href = "../";
+                            });
                         } else {
-                            Swal.fire('Error', 'No se pudo guardar el perfil.', 'error');
+                            Swal.fire('Error', result.error || 'No se pudo guardar el perfil.', 'error');
                         }
+                    })
+                    .catch(() => {
+                        Swal.fire('Error', 'Ocurrió un problema con la solicitud.', 'error');
                     });
             });
+
         });
 
     </script>
