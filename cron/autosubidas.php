@@ -46,7 +46,8 @@ try {
     } else {
       $sql = "UPDATE anuncios SET
       au_current = au_current + 1,
-      activated_at = NOW()
+      activated_at = NOW(),
+      expires_at = NOW() + INTERVAL 30 DAY
       WHERE anuncio_id = :anuncio_id";
       $stmt = $pdo->prepare($sql);
       $stmt->execute(['anuncio_id' => $result['anuncio_id']]);

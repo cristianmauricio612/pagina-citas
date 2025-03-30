@@ -177,3 +177,29 @@ input {
         gap: 15px;
     }
 }
+
+.acciones {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.acciones > a {
+    padding: 8px;
+    display: inline-flex;
+    gap: 8px;
+}
+
+td > img {
+    aspect-ratio: 1;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.acciones > a:hover {
+    color: #f0f0f0;
+    background-color: #4a035f;
+}

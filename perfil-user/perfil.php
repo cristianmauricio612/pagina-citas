@@ -89,7 +89,7 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Foto</th>
                         <th>Nombre</th>
                         <th>Categoria</th>
                         <th>Telefono</th>
@@ -103,18 +103,28 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
                         include '../php/backend/obtener_anuncios.php';
                         foreach ($anuncios as $anuncio) {
                             echo "<tr>
-                                <td>{$anuncio['anuncio_id']}</td>
+                                <td>
+                                    <img src='{$anuncio['picture_profile']}' class='foto-anuncio' alt='Foto de anuncio'>
+                                </td>
                                 <td>{$anuncio['nombre']}</td>
                                 <td>{$anuncio['categoria']}</td>
                                 <td>{$anuncio['telefono']}</td>
                                 <td>{$anuncio['titulo']}</td>
                                 <td>
+                                    <div class='acciones'/>
                                     <a class='btn-view show-visa' href='anuncio.php?id={$anuncio['anuncio_id']}'>
-                                        <i class='fa-solid fa-eye'></i>
+                                        <i class='fa-solid fa-external-link'></i>
+                                        Ver
                                     </a>
                                     <a class='btn-view show-visa' href='/payment/anuncios/?id={$anuncio['anuncio_id']}'>
                                         <i class='fa-solid fa-calendar'></i>
+                                        Autosubidas
                                     </a>
+                                    <a class='btn-view show-visa' href='/anuncios/visibilidad.php/?id={$anuncio['anuncio_id']}'>
+                                        <i class='fa-solid fa-eye'></i>
+                                        Visibilidad
+                                    </a>
+                                    </div>
                                 </td>
                             </tr>";
                         }
