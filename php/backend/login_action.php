@@ -1,8 +1,15 @@
 <?php
 
 // Opciones adicionales (si es necesario)
-ini_set('session.gc_maxlifetime', 3600);
-ini_set('session.cookie_lifetime', 3600);
+if(isset($_POST['remember']) && $_POST['remember'] == 1) {
+    // Configurar cookies para recordar la sesión
+    ini_set('session.gc_maxlifetime', 604800); // 7 días
+    ini_set('session.cookie_lifetime', 604800); // 7 días
+} else {
+    ini_set('session.gc_maxlifetime', 3600);
+    ini_set('session.cookie_lifetime', 3600);
+}
+
 session_start();
 
 require 'config.php'; // Configuración de la base de datos

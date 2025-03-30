@@ -28,6 +28,11 @@
                     <span class="input-group-text" id="toggle-password"><i class="fas fa-eye"></i></span>
                 </div>
             </div>
+            <!-- Recordar Session -->
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="remember-me">
+                <label class="form-check-label" for="remember-me">Recordar sesión</label>
+            </div>
             <button type="submit" id="auth-btn" class="auth-btn">Ingresar</button>
             <div class="auth-feedback"></div>
         </form>
@@ -53,7 +58,8 @@
 
             $.post("../php/backend/login_action.php", {
                 email: $("#login-email").val(),
-                password: $("#login-password").val()
+                password: $("#login-password").val(),
+                remember: $("#remember-me").is(":checked") ? 1 : 0
             }, function (data) {
                 const response = JSON.parse(data);
                 if (response.success) {

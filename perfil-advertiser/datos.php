@@ -228,11 +228,19 @@ if ($isLoggedIn) {
                 .then(response => response.json())
                 .then(countries => {
                     countries.forEach(country => {
-                        $('#countrySelect').append(
-                            `<option value="${country.name}" data-flag="${country.flag}">
-                                <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.name}
-                            </option>`
-                        );
+                        if(country.name === "España") {
+                            $('#countrySelect').append(
+                                `<option value="${country.name}" data-flag="${country.flag}" selected>
+                                    <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.name}
+                                </option>`
+                            );
+                        } else {
+                            $('#countrySelect').append(
+                                `<option value="${country.name}" data-flag="${country.flag}">
+                                    <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.name}
+                                </option>`
+                            );
+                        }
                     });
                 });
 
@@ -242,7 +250,7 @@ if ($isLoggedIn) {
                 .then(countries => {
                     countries.forEach(country => {
                         $('#indicativo').append(
-                            `<option value="${country.dial_code}" data-flag="${country.flag}" data-dial="${country.dial_code}">
+                            `<option ${country.dial_code === '+34' ? 'selected' : ''} value="${country.dial_code}" data-flag="${country.flag}" data-dial="${country.dial_code}">
                                 <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.dial_code} (${country.name})
                             </option>`
                         );
@@ -255,7 +263,7 @@ if ($isLoggedIn) {
                 .then(countries => {
                     countries.forEach(country => {
                         $('#bandera').append(
-                            `<option value="${country.code}" data-code="${country.code}" data-name="${country.name}">
+                            `<option ${country.code.toUpperCase() === 'ES' ? 'selected' : '' } value="${country.code}" data-code="${country.code}" data-name="${country.name}">
                                 <img src="https://flagsapi.com/${country.code.toUpperCase()}/shiny/32.png" width="10px"/> ${country.code.toUpperCase()} (${country.name})
                             </option>`
                         );
