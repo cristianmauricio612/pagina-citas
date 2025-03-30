@@ -85,7 +85,7 @@ if (!$usuario) {
     </a>
 
     <button <?= $usuario['creditos'] < $precio_de_subida ? 'disabled' : ''; ?> type="submit">
-      <?= "Subir por $precio_de_subida creditos"; ?>
+      <?= "Subir por " . $precio_de_subida . " creditos"; ?>
     </button>
     <span error></span>
   </form>
