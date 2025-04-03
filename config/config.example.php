@@ -50,7 +50,7 @@ $autosubidas = [
   [
     'days' => 7,
     'times' => 48,
-    'price' => 25,
+    'price' => 26,
   ],
   [
     'days' => 7,
@@ -70,7 +70,7 @@ $autosubidas = [
   [
     'days' => 7,
     'times' => 10,
-    'price' => 5,
+    'price' => 7,
   ],
   [
     'days' => 7,
@@ -100,11 +100,35 @@ $autosubidas = [
   [
     'days' => 30,
     'times' => 10,
-    'price' => 15,
+    'price' => 18,
   ],
   [
     'days' => 30,
     'times' => 4,
     'price' => 9,
   ]
+];
+
+$subidasfast_price = 1;
+$subidasfast = [
+  [
+    'minutes' => 15,
+    'times' => 95,
+  ],
+  [
+    'minutes' => 30,
+    'times' => 47,
+  ],
+  [
+    'minutes' => 60, // 1h
+    'times' => 23,
+  ],
+  [
+    'minutes' => 120, // 2h
+    'times' => 11,
+  ],
+  [
+    'minutes' => 240, // 4h
+    'times' => 4,
+  ],
 ];

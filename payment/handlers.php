@@ -62,6 +62,7 @@ function handle_autosubidas($pdo, $metadata)
 
   $sql = "UPDATE anuncios SET
     au_active = 1,
+    au_type = 0,
     au_start_day = :start_day,
     au_end_day = :end_day,
     au_days = :days,

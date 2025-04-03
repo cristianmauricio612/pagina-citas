@@ -149,7 +149,19 @@ $isAdvertiser = isset($usuario_type) && $usuario_type === "advertiser";
                             </a>
                             <a aria-disabled="<?= $anuncio['au_active'] ? 'true' : 'false' ?>" class='btn-view show-visa' href='/payment/anuncios/?id=<?= $anuncio['anuncio_id']; ?>'>
                                 <i class='fa-solid fa-clock'></i>
-                                Subidas Automáticas
+                                Autosubidas
+                            </a>
+                            <a
+                                aria-disabled="<?= $anuncio['au_active'] && $anuncio['au_type'] == 0 ? 'true' : 'false' ?>"
+                                class='btn-view show-visa' href='/anuncios/autosubida.php/?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-upload'></i>
+                                <?= $anuncio['au_active'] ? 'Modificar Subidas' : 'Subidas Automáticas'; ?>
+                            </a>
+                            <a
+                                aria-disabled="<?= $anuncio['au_active'] == 0 || $anuncio['au_type'] == 0 ? 'true' : 'false' ?>"
+                                class='btn-view show-visa' href='/anuncios/desactivar.php/?id=<?= $anuncio['anuncio_id']; ?>'>
+                                <i class='fa-solid fa-times'></i>
+                                Desactivar Subidas
                             </a>
                             <a class='btn-view show-visa' href='/anuncios/subida-manual.php/?id=<?= $anuncio['anuncio_id']; ?>'>
                                 <i class='fa-solid fa-wrench'></i>
