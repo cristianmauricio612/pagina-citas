@@ -1,9 +1,9 @@
 <?php
 
-// if (php_sapi_name() != 'cli') {
-//   header('HTTP/1.0 404 Not Found', true, 404);
-//   exit();
-// }
+if (php_sapi_name() != 'cli') {
+  header('HTTP/1.0 404 Not Found', true, 404);
+  exit();
+}
 
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../php/backend/config.php';

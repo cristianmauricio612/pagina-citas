@@ -5,7 +5,6 @@ if (php_sapi_name() != 'cli') {
   exit();
 }
 
-
 require_once __DIR__ . '/../php/backend/config.php';
 
 // expires_at only hidde anuncios
