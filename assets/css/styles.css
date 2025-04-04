@@ -1030,6 +1030,8 @@ button:hover {
 
 .perfil img {
     box-shadow: 0px 0px 4px #390b61;
+    width: 32px;
+    height: 32px;
 }
 
 #ciudadlocation {
@@ -1436,5 +1438,17 @@ a {
 
     .glowing-button, .loginboton {
         padding: 5px 8px;
+    }
+    .perfil {
+        padding: 2px 4px;
+    }
+
+    .creditosinfo {
+        padding: 4px 10px;
+    }
+
+    .perfil img {
+        width: 28px;
+        height: 28px;
     }
 }

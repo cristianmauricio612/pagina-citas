@@ -224,7 +224,7 @@ function tiempoTranscurrido($fecha)
                         <a href="#" class="d-flex align-items-center text-decoration-none text-light dropdown-toggle"
                             id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="conectado">•</span>
-                            <img src="/assets/img/fotos/users/advertiser.webp" alt="Foto de perfil"
+                            <img src="<?php echo $usuario['fotografia'] ? $usuario['fotografia'] : '/assets/img/fotos/foto-perfil.webp'; ?>" alt="Foto de perfil"
                                 class="rounded-circle me-2" width="32" height="32">
                             <span class="me-1 btn-name"><?= $userName ?></span>
                         </a>

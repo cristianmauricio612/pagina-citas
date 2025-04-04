@@ -2,6 +2,7 @@
 require '../php/backend/auth.php';
 require '../php/backend/get_credits.php';
 require_once '../php/backend/config.php';
+include '../php/backend/obtener_perfil.php';
 
 // Verifica si el usuario está logeado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
@@ -62,7 +63,7 @@ $userCredits = getUserCredits($userId, $pdo);
                     <div class="dropdown perfil">
                         <a href="#" class="d-flex align-items-center text-decoration-none text-light dropdown-toggle" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="conectado">•</span>
-                            <img src="/assets/img/fotos/users/advertiser.webp" alt="Foto de perfil" class="rounded-circle me-2" width="32" height="32">
+                            <img src="<?php echo $usuario['fotografia'] ? $usuario['fotografia'] : '/assets/img/fotos/foto-perfil.webp'; ?>" alt="Foto de perfil" class="rounded-circle me-2" width="32" height="32">
                             <span class="me-1"><?= $userName ?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end text-small" aria-labelledby="userMenu">
