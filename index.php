@@ -140,6 +140,24 @@ function tiempoTranscurrido($fecha)
             <i class="fa-solid fa-location-crosshairs"></i> Cerca de mí
         </button>
         <div class="sidebar-content">
+            <!-- Buscar -->
+            <div class="mb-1">
+                <label for="buscar" class="form-label">Buscar</label>
+                <input type="text" id="buscarclave" class="form-control" placeholder="Buscar palabra...">
+            </div>
+
+            <!-- Rango de edad -->
+            <div class="mb-2" style="margin-bottom: 18px !important;">
+                <label class="form-label edadlabel">Edad</label>
+                <div id="range-slider" style="margin: 20px 0;"></div>
+                <div class="d-flex justify-content-between" style="margin-top: -15px;">
+                    <span class="d-none" id="edad-desde-label">18</span>
+                    <span class="d-none" id="edad-hasta-label">60</span>
+                    <span style="font-size: 12px;">Desde</span>
+                    <span style="font-size: 12px;">Hasta</span>
+                </div>
+            </div>
+
             <!-- Categoría -->
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
@@ -168,24 +186,6 @@ function tiempoTranscurrido($fecha)
                 </select>
             </div>
 
-            <!-- Buscar -->
-            <div class="mb-1">
-                <label for="buscar" class="form-label">Buscar</label>
-                <input type="text" id="buscarclave" class="form-control" placeholder="Buscar palabra...">
-            </div>
-
-            <!-- Rango de edad -->
-            <div class="mb-2">
-                <label class="form-label edadlabel">Edad</label>
-                <div id="range-slider" style="margin: 20px 0;"></div>
-                <div class="d-flex justify-content-between" style="margin-top: -15px;">
-                    <span class="d-none" id="edad-desde-label">18</span>
-                    <span class="d-none" id="edad-hasta-label">60</span>
-                    <span style="font-size: 12px;">Desde</span>
-                    <span style="font-size: 12px;">Hasta</span>
-                </div>
-            </div>
-
             <!-- Botón -->
             <div>
                 <button id="aplicar-filtros" class="buttonfilter w-100">
@@ -206,7 +206,7 @@ function tiempoTranscurrido($fecha)
                     <img src="/assets/img/logos/logo.png">
                 </span>
                 <p class="frase">
-                    Tus fantasías cerca de ti
+                    Tus fantasías más cerca de ti
                 </p>
             </a>
             <br>
